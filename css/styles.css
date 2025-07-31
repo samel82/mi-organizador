@@ -5,13 +5,14 @@
     box-sizing: border-box;
 }
 
-/* Estilos generales del body */
+/* Estilos generales del body - TEMA MÉDICO */
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #2E8B57 0%, #4682B4 100%); /* Verde médico a azul confianza */
     min-height: 100vh;
     padding: 20px;
     color: white;
+    position: relative;
 }
 
 /* Contenedor principal */
@@ -24,12 +25,14 @@ body {
 .header {
     text-align: center;
     margin-bottom: 30px;
+    position: relative;
 }
 
 .header h1 {
     font-size: 24px;
     margin-bottom: 10px;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    color: #E8F5E8; /* Verde muy claro */
 }
 
 /* Botones de navegación */
@@ -42,9 +45,9 @@ body {
 .nav-btn {
     flex: 1;
     padding: 15px;
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
     color: white;
     font-size: 16px;
     font-weight: bold;
@@ -54,13 +57,15 @@ body {
 }
 
 .nav-btn.active {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(46, 139, 87, 0.4); /* Verde médico semi-transparente */
+    border-color: rgba(46, 139, 87, 0.6);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 25px rgba(46, 139, 87, 0.3);
 }
 
 .nav-btn:hover {
     background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.4);
 }
 
 /* Secciones */
@@ -94,10 +99,11 @@ body {
 /* Columnas de tareas */
 .task-column {
     flex: 1;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 15px;
     padding: 20px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
@@ -105,8 +111,9 @@ body {
     margin-bottom: 15px;
     text-align: center;
     font-size: 16px;
-    color: #ffd700;
+    color: #87CEEB; /* Azul cielo médico */
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    font-weight: 600;
 }
 
 /* Lista de tareas */
@@ -115,10 +122,11 @@ body {
 }
 
 .task-item {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 12px;
     margin-bottom: 8px;
-    border-radius: 8px;
+    border-radius: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -127,7 +135,8 @@ body {
 }
 
 .task-item:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(135, 206, 235, 0.4);
     transform: translateX(5px);
 }
 
@@ -150,23 +159,26 @@ body {
 
 /* Botón de eliminar */
 .delete-btn {
-    background: #ff4757;
+    background: #e74c3c;
     border: none;
     color: white;
-    width: 25px;
-    height: 25px;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: bold;
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
 }
 
 .delete-btn:hover {
-    background: #ff3742;
+    background: #c0392b;
     transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
 }
 
 /* Agregar tarea */
@@ -178,11 +190,11 @@ body {
 
 .add-task input {
     flex: 1;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
+    padding: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
     background: rgba(255, 255, 255, 0.9);
-    color: #333;
+    color: #2c3e50;
     font-size: 14px;
     transition: all 0.2s ease;
 }
@@ -190,25 +202,32 @@ body {
 .add-task input:focus {
     outline: none;
     background: rgba(255, 255, 255, 1);
-    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.5);
+    border-color: #27ae60;
+    box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.2);
+}
+
+.add-task input::placeholder {
+    color: #7f8c8d;
 }
 
 /* Botón agregar */
 .add-btn {
-    padding: 10px 15px;
-    background: #2ed573;
+    padding: 12px 18px;
+    background: #27ae60;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     color: white;
     cursor: pointer;
     font-weight: bold;
+    font-size: 16px;
     transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
 }
 
 .add-btn:hover {
-    background: #26d063;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background: #219a52;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(39, 174, 96, 0.4);
 }
 
 /* Sección de credenciales */
@@ -218,17 +237,19 @@ body {
 }
 
 .credential-card {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 15px;
     padding: 20px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
     transition: all 0.3s ease;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .credential-card:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    border-color: rgba(135, 206, 235, 0.4);
 }
 
 .credential-header {
@@ -241,38 +262,40 @@ body {
 .app-name {
     font-size: 18px;
     font-weight: bold;
-    color: #ffd700;
+    color: #87CEEB; /* Azul cielo médico */
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .credential-info {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .credential-info label {
     display: block;
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 5px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 6px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    font-weight: 500;
 }
 
 .credential-value {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 8px;
-    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 8px;
     font-family: 'Courier New', monospace;
     font-size: 14px;
     word-break: break-all;
     cursor: pointer;
     transition: all 0.2s ease;
-    border: 1px solid transparent;
 }
 
 .credential-value:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 215, 0, 0.5);
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(135, 206, 235, 0.5);
+    transform: scale(1.02);
 }
 
 /* Acciones de credenciales */
@@ -284,63 +307,72 @@ body {
 
 .edit-btn, .copy-btn {
     flex: 1;
-    padding: 8px;
+    padding: 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 12px;
     font-weight: bold;
     transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .edit-btn {
-    background: #3742fa;
+    background: #3498db;
     color: white;
+    box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
 }
 
 .copy-btn {
-    background: #2ed573;
+    background: #27ae60;
     color: white;
+    box-shadow: 0 3px 10px rgba(39, 174, 96, 0.3);
 }
 
 .edit-btn:hover {
-    background: #2f3542;
+    background: #2980b9;
     transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
 }
 
 .copy-btn:hover {
-    background: #26d063;
+    background: #219a52;
     transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4);
 }
 
 /* Agregar credencial */
 .add-credential {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 15px;
     padding: 20px;
     margin-bottom: 20px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .add-credential h3 {
     margin-bottom: 15px;
-    color: #ffd700;
+    color: #87CEEB; /* Azul cielo médico */
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .credential-form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
 
 .credential-form input {
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
+    padding: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
     background: rgba(255, 255, 255, 0.9);
-    color: #333;
+    color: #2c3e50;
     font-size: 14px;
     transition: all 0.2s ease;
 }
@@ -348,7 +380,12 @@ body {
 .credential-form input:focus {
     outline: none;
     background: rgba(255, 255, 255, 1);
-    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.5);
+    border-color: #27ae60;
+    box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.2);
+}
+
+.credential-form input::placeholder {
+    color: #7f8c8d;
 }
 
 /* Modal */
@@ -359,9 +396,9 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
     z-index: 1000;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(8px);
 }
 
 .modal-content {
@@ -369,113 +406,159 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #2E8B57 0%, #4682B4 100%);
+    border: 2px solid rgba(255, 255, 255, 0.2);
     padding: 30px;
-    border-radius: 15px;
+    border-radius: 20px;
     width: 90%;
-    max-width: 300px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 320px;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
 }
 
 .modal h3 {
     margin-bottom: 20px;
-    color: #ffd700;
+    color: #87CEEB;
     text-align: center;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .modal input {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin-bottom: 15px;
-    border: none;
-    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
     background: rgba(255, 255, 255, 0.9);
-    color: #333;
+    color: #2c3e50;
     font-size: 14px;
+    transition: all 0.2s ease;
 }
 
 .modal input:focus {
     outline: none;
     background: rgba(255, 255, 255, 1);
-    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.5);
+    border-color: #27ae60;
+    box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.2);
+}
+
+.modal input::placeholder {
+    color: #7f8c8d;
 }
 
 .modal-actions {
     display: flex;
-    gap: 10px;
+    gap: 12px;
+    margin-top: 20px;
 }
 
 .modal-actions button {
     flex: 1;
-    padding: 10px;
+    padding: 12px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
     font-weight: bold;
+    font-size: 14px;
     transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .save-btn {
-    background: #2ed573;
+    background: #27ae60;
     color: white;
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
 }
 
 .cancel-btn {
-    background: #ff4757;
+    background: #e74c3c;
     color: white;
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
 }
 
 .save-btn:hover {
-    background: #26d063;
-    transform: translateY(-1px);
+    background: #219a52;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(39, 174, 96, 0.4);
 }
 
 .cancel-btn:hover {
-    background: #ff3742;
-    transform: translateY(-1px);
+    background: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(231, 76, 60, 0.4);
 }
 
 /* Toast (notificaciones) */
 .toast {
     position: fixed;
-    bottom: 20px;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    background: #2ed573;
+    background: #27ae60;
     color: white;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border-radius: 25px;
     font-size: 14px;
+    font-weight: 500;
     z-index: 1001;
     animation: toastIn 0.3s ease;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 32px rgba(39, 174, 96, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
 }
 
 @keyframes toastIn {
     from { 
         opacity: 0; 
-        transform: translate(-50%, 20px); 
+        transform: translate(-50%, 30px) scale(0.8); 
     }
     to { 
         opacity: 1; 
-        transform: translate(-50%, 0); 
+        transform: translate(-50%, 0) scale(1); 
     }
+}
+
+/* Botón de logout */
+.logout-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(231, 76, 60, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    z-index: 999;
+}
+
+.logout-btn:hover {
+    background: rgba(192, 57, 43, 0.9);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
 }
 
 /* Responsive Design */
 @media (max-width: 480px) {
     body {
-        padding: 10px;
+        padding: 15px;
     }
     
     .task-container {
         flex-direction: column;
-        gap: 10px;
+        gap: 12px;
     }
     
     .header h1 {
-        font-size: 20px;
+        font-size: 22px;
     }
     
     .nav-btn {
@@ -484,11 +567,85 @@ body {
     }
     
     .task-column {
-        padding: 15px;
+        padding: 16px;
     }
     
     .modal-content {
         width: 95%;
-        padding: 20px;
+        padding: 25px;
+        margin: 10px;
     }
+    
+    .credential-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .edit-btn, .copy-btn {
+        width: 100%;
+    }
+    
+    .logout-btn {
+        top: 10px;
+        right: 10px;
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+}
+
+/* Efectos adicionales para tema médico */
+.task-column::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #27ae60, #3498db);
+    border-radius: 15px 15px 0 0;
+}
+
+.credential-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #3498db, #27ae60);
+    border-radius: 15px 15px 0 0;
+}
+
+.task-column, .credential-card {
+    position: relative;
+}
+
+/* Animación de pulso para elementos importantes */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(39, 174, 96, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(39, 174, 96, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(39, 174, 96, 0); }
+}
+
+.add-btn:active {
+    animation: pulse 0.6s;
+}
+
+/* Scroll personalizado */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(135, 206, 235, 0.6);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(135, 206, 235, 0.8);
 }
