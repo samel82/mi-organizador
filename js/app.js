@@ -4,11 +4,81 @@ let priorityTasks = JSON.parse(localStorage.getItem('priorityTasks')) || [];
 let credentials = JSON.parse(localStorage.getItem('credentials')) || [];
 let editingIndex = -1;
 
+// SISTEMA DE CONTRASEÑA
+function checkPassword() {
+    const savedPassword = localStorage.getItem('appPassword');
+    
+    if (savedPassword === 'authenticated') {
+        return true;
+    }
+    
+    const password = prompt("🔒 Ingresa la contraseña para acceder a tu organizador:");
+    
+    if (password === "samuel2025") {  // CAMBIA ESTA CONTRASEÑA
+        localStorage.setItem('appPassword', 'authenticated');
+        return true;
+    } else if (password === null) {
+        // Usuario canceló
+        return false;
+    } else {
+        alert("❌ Contraseña incorrecta");
+        return false;
+    }
+}
+
+// Función para cerrar sesión
+function logout() {
+    if (confirm("¿Estás seguro de que quieres cerrar sesión?")) {
+        localStorage.removeItem('appPassword');
+        location.reload();
+    }
+}
+
 // Inicializar la aplicación cuando se carga la página
 document.addEventListener('DOMContentLoaded', function() {
+    // Verificar contraseña primero
+    if (!checkPassword()) {
+        document.body.innerHTML = `
+            <div style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                background: linear-gradient(135deg, #2E8B57 0%, #4682B4 100%);
+                color: white;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                text-align: center;
+                flex-direction: column;
+            ">
+                <div style="
+                    background: rgba(255,255,255,0.1);
+                    padding: 40px;
+                    border-radius: 20px;
+                    backdrop-filter: blur(10px);
+                ">
+                    <h1 style="font-size: 24px; margin-bottom: 20px;">🔒 Acceso Denegado</h1>
+                    <p style="margin-bottom: 20px;">No tienes permisos para acceder a esta aplicación</p>
+                    <button onclick="location.reload()" style="
+                        background: #28a745;
+                        color: white;
+                        border: none;
+                        padding: 10px 20px;
+                        border-radius: 10px;
+                        cursor: pointer;
+                        font-size: 16px;
+                    ">Intentar de nuevo</button>
+                </div>
+            </div>
+        `;
+        return;
+    }
+    
     console.log('🚀 Aplicación iniciada correctamente');
     renderTasks();
     renderCredentials();
+    
+    // Agregar botón de logout
+    addLogoutButton();
     
     // Agregar eventos para presionar Enter en los inputs
     document.getElementById('dailyTaskInput').addEventListener('keypress', function(e) {
@@ -30,6 +100,34 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Agregar botón de logout
+function addLogoutButton() {
+    const header = document.querySelector('.header');
+    const logoutBtn = document.createElement('button');
+    logoutBtn.innerHTML = '🚪 Cerrar Sesión';
+    logoutBtn.onclick = logout;
+    logoutBtn.style.cssText = `
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: rgba(255,255,255,0.2);
+        border: none;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 12px;
+        transition: all 0.3s ease;
+    `;
+    logoutBtn.addEventListener('mouseover', function() {
+        this.style.background = 'rgba(255,255,255,0.3)';
+    });
+    logoutBtn.addEventListener('mouseout', function() {
+        this.style.background = 'rgba(255,255,255,0.2)';
+    });
+    document.body.appendChild(logoutBtn);
+}
 
 // ==================== FUNCIONES DE NAVEGACIÓN ====================
 
@@ -334,9 +432,9 @@ function showToast(message, type = 'success') {
     
     // Cambiar color según el tipo
     if (type === 'error') {
-        toast.style.background = '#ff4757';
+        toast.style.background = '#e74c3c';
     } else {
-        toast.style.background = '#2ed573';
+        toast.style.background = '#27ae60';
     }
     
     document.body.appendChild(toast);
@@ -379,48 +477,11 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// ==================== UTILIDADES ====================
-
-function exportData() {
-    const data = {
-        dailyTasks: dailyTasks,
-        priorityTasks: priorityTasks,
-        credentials: credentials,
-        exportDate: new Date().toISOString(),
-        version: '1.0'
-    };
-    
-    const dataStr = JSON.stringify(data, null, 2);
-    const dataBlob = new Blob([dataStr], {type: 'application/json'});
-    
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(dataBlob);
-    link.download = `mi-organizador-backup-${new Date().toISOString().split('T')[0]}.json`;
-    link.click();
-    
-    showToast('Backup exportado correctamente');
-    console.log('💾 Datos exportados');
-}
-
-function clearAllData() {
-    if (confirm('⚠️ ¿Estás seguro de que quieres eliminar TODOS los datos?\n\nEsta acción no se puede deshacer.')) {
-        localStorage.clear();
-        dailyTasks = [];
-        priorityTasks = [];
-        credentials = [];
-        
-        renderTasks();
-        renderCredentials();
-        
-        showToast('Todos los datos han sido eliminados');
-        console.log('🗑️ Todos los datos eliminados');
-    }
-}
-
 // ==================== INICIALIZACIÓN ====================
 
 console.log(`
-🚀 Mi Organizador Personal v1.0
+🚀 Mi Organizador Personal v2.0
+🔒 Sistema de seguridad activado
 📱 Aplicación web progresiva
 💾 Datos guardados localmente
 🔒 Funciona sin internet
